@@ -190,8 +190,17 @@ with col1:
     mc2.metric("Humedad Relativa", f"{dl_hum} %")
     
     st.markdown(f"🤖 Evaluación para: **{objetivo_especifico}**")
-    st.markdown(f"<h1 style='color:{color_alerta}; text-align:center; background-color:#f0f2f6; padding:10px; border-radius:10px;'>RIESGO {riesgo.upper()}</h1>", unsafe_url_allowed=True)
-
+    
+    # Despliegue del semáforo con componentes nativos estables
+    if riesgo == "Alto":
+        st.error(f"🚨 RIESGO ALTO")
+    elif riesgo == "Medio":
+        st.warning(f"⚠️ RIESGO MEDIO")
+    elif riesgo == "Variable":
+        st.info(f"ℹ️ RIESGO VARIABLE")
+    else:
+        st.success(f"✅ RIESGO BAJO")
+        
 with col2:
     st.subheader("🌐 Predicción del Macroclima (API Abierta)")
     if clima_data:
